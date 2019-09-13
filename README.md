@@ -1,0 +1,2 @@
+# ScriptDolar
+Script para dolar
