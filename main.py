@@ -3,9 +3,13 @@ import requests
 import time
 import os
 import threading
+import json
+import csv
 #def printit():
  #   threading.Timer(5.0,printit).start() 
  #   print("hola")
+
+
 
 #printit()
 def printit():    
@@ -17,22 +21,26 @@ def printit():
     monedaData=[]
 
     MonedaRows = page_content.find_all("tr")
+    MonedasDict ={}
     for row in MonedaRows[1: ]:
         valoresHtml = row.find_all("td")[1: 3]
         valoresArray =  list(map(lambda data: (data.text), valoresHtml))
         typesHtml = row.find_all()
 
         name = str(row.find("a").text).strip()
-    
-        print(name,valoresArray)
-       
-        
         x=float(str(valoresArray[0][2:7]).replace(",","."))
-
-        file = open("C:/Users/Pc/Desktop/python/scriptweb2/filename.txt", "w")
-        file.write(str(x))
-        file.close()
+        y=float(str(valoresArray[1][2:7]).replace(",","."))
+        #print(name,valoresArray)
+        MonedasDict=[
+            [name,str(x),str(y)],
+        ]
+        #MonedasDict[str(name)]={
+        #    "compra": x,
+        #    "venta": y
+        #}
         
+        print(MonedasDict)
 
  
 printit()
+
